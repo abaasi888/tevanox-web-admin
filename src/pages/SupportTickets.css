@@ -1,0 +1,184 @@
+.support-tickets {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.ticket-filters {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-btn {
+  padding: 0.4rem 1rem;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.filter-btn.active {
+  background: #9c27b0;
+  color: white;
+  border-color: #9c27b0;
+}
+
+.tickets-layout {
+  display: flex;
+  gap: 1.5rem;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 600px;
+}
+
+.tickets-list {
+  width: 320px;
+  border-right: 1px solid #e0e0e0;
+  overflow-y: auto;
+  max-height: 600px;
+}
+
+.ticket-item {
+  padding: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ticket-item:hover {
+  background: #f9f9f9;
+}
+
+.ticket-item.active {
+  background: #f3e5f5;
+  border-left: 3px solid #9c27b0;
+}
+
+.ticket-subject {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.ticket-meta {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.3rem;
+  font-size: 0.7rem;
+}
+
+.ticket-date {
+  font-size: 0.7rem;
+  color: #999;
+}
+
+.ticket-detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.ticket-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.ticket-detail-header h3 {
+  margin: 0;
+}
+
+.ticket-info {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.ticket-info p {
+  margin: 0.3rem 0;
+  font-size: 0.85rem;
+}
+
+.ticket-messages {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 400px;
+  margin-bottom: 1rem;
+}
+
+.message {
+  margin-bottom: 1rem;
+}
+
+.message.admin {
+  text-align: right;
+}
+
+.message-bubble {
+  display: inline-block;
+  max-width: 70%;
+  padding: 0.6rem 1rem;
+  border-radius: 18px;
+  background: #f0f0f0;
+}
+
+.message.admin .message-bubble {
+  background: #9c27b0;
+  color: white;
+}
+
+.message-bubble strong {
+  display: block;
+  font-size: 0.75rem;
+  margin-bottom: 0.2rem;
+}
+
+.message-bubble p {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.message-bubble small {
+  font-size: 0.65rem;
+  opacity: 0.7;
+  display: block;
+  margin-top: 0.2rem;
+}
+
+.ticket-reply {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.ticket-reply textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.ticket-reply button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #9c27b0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.no-tickets, .no-ticket-selected {
+  text-align: center;
+  padding: 2rem;
+  color: #999;
+}

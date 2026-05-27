@@ -1,0 +1,34 @@
+.admin-navbar {
+  background: white;
+  padding: 0.8rem 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+.admin-navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-navbar-title span {
+  font-weight: 500;
+  color: #333;
+}
+
+.admin-logout-btn {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.admin-logout-btn:hover {
+  background: #d32f2f;
+}
