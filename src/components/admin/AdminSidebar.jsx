@@ -52,6 +52,7 @@ const AdminSidebar = () => {
           <h3>Commissions</h3>
           <NavLink to="/admin/commissions" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
             💰 Commission Management
+            <span className="commission-badge">20-30%</span>
           </NavLink>
         </div>
 

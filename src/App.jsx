@@ -25,7 +25,7 @@ import SupportTickets from './pages/SupportTickets'
 import SystemSettings from './pages/SystemSettings'
 import AdminProfile from './pages/AdminProfile'
 
-// Commission Management (NEW)
+// Commission Management
 import CommissionsManagement from './pages/CommissionsManagement'
 
 import './App.css'
@@ -61,8 +61,6 @@ function App() {
           <Route path="tickets" element={<SupportTickets />} />
           <Route path="settings" element={<SystemSettings />} />
           <Route path="profile" element={<AdminProfile />} />
-          
-          {/* Commission Management Route (NEW) */}
           <Route path="commissions" element={<CommissionsManagement />} />
         </Route>
         

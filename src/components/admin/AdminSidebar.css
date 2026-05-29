@@ -115,6 +115,16 @@
   width: 24px;
 }
 
+/* Commission rate badge */
+.commission-badge {
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  color: white;
+  font-size: 0.6rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 10px;
+  margin-left: auto;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .admin-sidebar {

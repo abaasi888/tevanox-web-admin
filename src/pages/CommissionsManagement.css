@@ -3,6 +3,77 @@
   margin: 0 auto;
 }
 
+/* Rate Info Banner */
+.rate-info-banner {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.rate-info-content h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+}
+
+.rate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.rate-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.rate-card.sales { border-left: 4px solid #4caf50; }
+.rate-card.technical-self { border-left: 4px solid #ff9800; }
+.rate-card.technical-flash { border-left: 4px solid #2196f3; }
+
+.rate-icon {
+  font-size: 2rem;
+}
+
+.rate-details {
+  flex: 1;
+}
+
+.rate-details strong {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.rate-details span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffd700;
+}
+
+.rate-details small {
+  font-size: 0.7rem;
+  opacity: 0.8;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.payout-info {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* Summary Cards */
 .summary-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -43,6 +114,7 @@
   color: #999;
 }
 
+/* Sections */
 .section {
   background: white;
   border-radius: 16px;
@@ -65,6 +137,7 @@
   margin-bottom: 1rem;
 }
 
+/* Badges */
 .type-badge, .role-badge {
   display: inline-block;
   padding: 0.2rem 0.5rem;
@@ -75,10 +148,57 @@
 
 .type-badge.one_time { background: #e3f2fd; color: #1565c0; }
 .type-badge.recurring { background: #e8f5e9; color: #2e7d32; }
-.role-badge.referrer { background: #f3e5f5; color: #7b1fa2; }
-.role-badge.flasher { background: #fff3e0; color: #ef6c00; }
-.role-badge.both { background: #e0f7fa; color: #006064; }
 
+.role-badge.sales_agent { background: #e8f5e9; color: #2e7d32; }
+.role-badge.technical_agent { background: #fff3e0; color: #ef6c00; }
+
+/* Table */
+.table-container {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.data-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #555;
+}
+
+.data-table tr:hover {
+  background: #fafafa;
+}
+
+.rate-cell {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #ff9800;
+  font-weight: 600;
+}
+
+.amount-cell {
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.no-data {
+  text-align: center;
+  color: #999;
+  padding: 2rem;
+}
+
+/* Filter */
 .filter-row {
   margin-bottom: 1rem;
 }
@@ -90,10 +210,37 @@
   min-width: 250px;
 }
 
+/* Agent Details */
 .agent-details {
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid #eee;
+}
+
+.agent-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.agent-summary-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.agent-summary-card span {
+  font-size: 0.7rem;
+  color: #666;
+  display: block;
+}
+
+.agent-summary-card strong {
+  font-size: 1rem;
+  margin-top: 0.25rem;
+  display: block;
 }
 
 .product-stats {
@@ -123,6 +270,12 @@
   color: #555;
 }
 
+.stat-divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 0.5rem 0;
+}
+
 .eligible-badge {
   margin-top: 0.5rem;
   padding: 0.3rem;
@@ -131,4 +284,55 @@
   border-radius: 8px;
   font-size: 0.7rem;
   text-align: center;
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, #9c27b0, #7b1fa2);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(156, 39, 176, 0.3);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Loading */
+.loading-spinner {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .rate-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .summary-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
 }

@@ -2,6 +2,79 @@
   margin-bottom: 1.5rem;
 }
 
+/* Page Header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.commission-info-badge {
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Role Rate Info */
+.role-rate-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.rate-info {
+  font-size: 0.7rem;
+  color: #ff9800;
+  font-family: monospace;
+}
+
+/* Signup Stats */
+.signup-stats {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.signup-stats .referred {
+  background: #e3f2fd;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+.signup-stats .flashed {
+  background: #fff3e0;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+.signup-stats .total {
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+/* Commission Cell */
+.commission-cell {
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.commission-breakdown {
+  display: block;
+  font-size: 0.6rem;
+  color: #999;
+  font-weight: normal;
+}
+
+/* Employment Badge */
 .employment-badge {
   display: inline-block;
   padding: 0.2rem 0.5rem;
@@ -20,6 +93,7 @@
   color: #ef6c00;
 }
 
+/* Buttons */
 .promote-btn {
   background: #ff9800;
   color: white;
@@ -33,4 +107,312 @@
 
 .promote-btn:hover {
   background: #f57c00;
+}
+
+.view-btn {
+  background: #2196f3;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  margin-right: 0.5rem;
+}
+
+.view-btn:hover {
+  background: #1976d2;
+}
+
+/* Filters Section */
+.filters-section {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+.filters-section select {
+  padding: 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  min-width: 200px;
+}
+
+/* Agent Badge */
+.agent-badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.agent-badge.sales_agent {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.agent-badge.technical {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+/* Status Badge */
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.status-badge.pending {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.status-badge.active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-badge.suspended {
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* Actions Cell */
+.actions-cell {
+  white-space: nowrap;
+}
+
+.approve-btn {
+  background: #4caf50;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  margin-right: 0.5rem;
+}
+
+.approve-btn:hover {
+  background: #388e3c;
+}
+
+.delete-btn {
+  background: #f44336;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+.delete-btn:hover {
+  background: #d32f2f;
+}
+
+/* Modal Large */
+.modal-container.large {
+  max-width: 800px;
+  width: 90%;
+}
+
+/* Commission Summary Modal */
+.commission-summary-modal {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.summary-item {
+  background: #f8f9fa;
+  padding: 0.8rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.summary-item span {
+  display: block;
+  font-size: 0.7rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+
+.summary-item strong {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Product Stats Modal */
+.product-stats-modal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.product-stat-modal {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid #eee;
+}
+
+.product-stat-modal h5 {
+  margin: 0 0 0.5rem 0;
+  color: #9c27b0;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin: 0.3rem 0;
+  color: #555;
+}
+
+.stat-row.highlight {
+  font-weight: 600;
+  color: #ff9800;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed #ddd;
+}
+
+/* Info Note */
+.info-note {
+  background: #e3f2fd;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  color: #1565c0;
+  margin-top: 1rem;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
+/* Modal Footer */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.btn-secondary {
+  background: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: #ccc;
+}
+
+/* Table Container */
+.table-container {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.data-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #555;
+}
+
+.data-table tr:hover {
+  background: #fafafa;
+}
+
+.no-data {
+  text-align: center;
+  color: #999;
+  padding: 2rem;
+}
+
+/* Loading */
+.loading-spinner {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filters-section {
+    flex-direction: column;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .signup-stats {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .commission-summary-modal {
+    grid-template-columns: 1fr;
+  }
 }
