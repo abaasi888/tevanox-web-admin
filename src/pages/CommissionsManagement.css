@@ -1,0 +1,134 @@
+.commissions-management {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-left: 4px solid #9c27b0;
+}
+
+.summary-icon {
+  font-size: 2rem;
+}
+
+.summary-info h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #333;
+}
+
+.summary-info p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.summary-info small {
+  font-size: 0.7rem;
+  color: #999;
+}
+
+.section {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.section h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.type-badge, .role-badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.type-badge.one_time { background: #e3f2fd; color: #1565c0; }
+.type-badge.recurring { background: #e8f5e9; color: #2e7d32; }
+.role-badge.referrer { background: #f3e5f5; color: #7b1fa2; }
+.role-badge.flasher { background: #fff3e0; color: #ef6c00; }
+.role-badge.both { background: #e0f7fa; color: #006064; }
+
+.filter-row {
+  margin-bottom: 1rem;
+}
+
+.filter-row select {
+  padding: 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  min-width: 250px;
+}
+
+.agent-details {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.product-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.product-stat-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid #eee;
+}
+
+.product-stat-card h5 {
+  margin: 0 0 0.5rem 0;
+  color: #9c27b0;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin: 0.3rem 0;
+  color: #555;
+}
+
+.eligible-badge {
+  margin-top: 0.5rem;
+  padding: 0.3rem;
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  text-align: center;
+}

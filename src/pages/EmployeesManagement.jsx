@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { employeesApi } from '../api/employees'
+import { productsApi } from '../api/products'
 import toast from 'react-hot-toast'
 import './EmployeesManagement.css'
 
 const EmployeesManagement = () => {
   const [employees, setEmployees] = useState([])
+  const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
+  const [filterType, setFilterType] = useState('')
   const [showPromoteModal, setShowPromoteModal] = useState(false)
   const [selectedEmployee, setSelectedEmployee] = useState(null)
-  const [promoteData, setPromoteData] = useState({ baseSalary: 2000, commissionRate: 10 })
+  const [selectedProduct, setSelectedProduct] = useState('')
+  const [promoteData, setPromoteData] = useState({ baseSalary: 2000 })
 
   useEffect(() => {
     loadEmployees()
+    loadProducts()
   }, [])
 
   const loadEmployees = async () => {
@@ -26,10 +31,19 @@ const EmployeesManagement = () => {
     }
   }
 
+  const loadProducts = async () => {
+    try {
+      const response = await productsApi.getAllAdmin()
+      setProducts(response.data.products || [])
+    } catch (error) {
+      console.error('Failed to load products')
+    }
+  }
+
   const approveKyc = async (employeeId) => {
     try {
       await employeesApi.approveKyc(employeeId)
-      toast.success('Employee KYC approved')
+      toast.success('Employee approved')
       loadEmployees()
     } catch (error) {
       toast.error('Failed to approve')
@@ -37,12 +51,17 @@ const EmployeesManagement = () => {
   }
 
   const promoteEmployee = async () => {
+    if (!selectedProduct) {
+      toast.error('Select a product')
+      return
+    }
     try {
       await employeesApi.promoteToPermanent({
-        employeeId: selectedEmployee.id,
-        ...promoteData
+        employee_id: selectedEmployee.id,
+        product_id: selectedProduct,
+        base_salary: promoteData.baseSalary
       })
-      toast.success('Employee promoted to permanent')
+      toast.success('Employee promoted to permanent for this product')
       setShowPromoteModal(false)
       loadEmployees()
     } catch (error) {
@@ -51,7 +70,7 @@ const EmployeesManagement = () => {
   }
 
   const deleteEmployee = async (employeeId) => {
-    if (confirm('Delete this employee?')) {
+    if (confirm('Delete this employee? This action cannot be undone.')) {
       try {
         await employeesApi.delete(employeeId)
         toast.success('Employee deleted')
@@ -62,6 +81,10 @@ const EmployeesManagement = () => {
     }
   }
 
+  const viewCommissions = (employeeId) => {
+    window.open(`/admin/commissions?agent=${employeeId}`, '_blank')
+  }
+
   const calculateMonthsEmployed = (joinDate) => {
     const join = new Date(joinDate)
     const now = new Date()
@@ -70,26 +93,34 @@ const EmployeesManagement = () => {
     return months
   }
 
-  const filteredEmployees = employees.filter(emp =>
-    emp.fullName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    emp.email?.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  const filteredEmployees = employees.filter(emp => {
+    const matchesSearch = emp.fullName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          emp.email?.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesType = !filterType || emp.agentType === filterType
+    return matchesSearch && matchesType
+  })
 
-  if (loading) {
-    return <div className="loading-spinner">Loading employees...</div>
-  }
+  if (loading) return <div className="loading-spinner">Loading employees...</div>
 
   return (
     <div className="employees-management">
-      <h1 className="page-title">Employee Management</h1>
-      
-      <div className="search-bar">
+      <div className="page-header">
+        <h1 className="page-title">Employee Management</h1>
+      </div>
+
+      <div className="filters-section">
         <input
           type="text"
           placeholder="Search by name or email..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
         />
+        <select value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+          <option value="">All Types</option>
+          <option value="basic">Basic (Android only)</option>
+          <option value="technical">Technical (Computer + Internet)</option>
+        </select>
       </div>
 
       <div className="table-container">
@@ -99,8 +130,8 @@ const EmployeesManagement = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Type</th>
-              <th>Signups</th>
-              <th>Commission</th>
+              <th>Signups (Referred/Flashed)</th>
+              <th>Total Commission</th>
               <th>Tenure</th>
               <th>Status</th>
               <th>Actions</th>
@@ -109,45 +140,42 @@ const EmployeesManagement = () => {
           <tbody>
             {filteredEmployees.map(emp => {
               const monthsEmployed = calculateMonthsEmployed(emp.joinDate)
-              const eligible = emp.totalSignups >= 4000 && monthsEmployed >= 12
+              const eligibleProducts = products.filter(p => 
+                emp.totalSignupsCombined >= p.commission_rules?.permanent_salary_threshold && 
+                monthsEmployed >= p.commission_rules?.permanent_salary_months
+              )
               return (
                 <tr key={emp.id}>
                   <td><strong>{emp.fullName}</strong></td>
                   <td>{emp.email}</td>
                   <td>
-                    <span className={`employment-badge ${emp.employmentType}`}>
-                      {emp.employmentType === 'permanent' ? 'Permanent' : 'Contractor'}
+                    <span className={`agent-badge ${emp.agentType}`}>
+                      {emp.agentType === 'technical' ? '🔧 Technical' : '📱 Basic'}
                     </span>
                   </td>
-                  <td>{emp.totalSignups}/4000</td>
+                  <td>{emp.totalSignupsReferred} / {emp.totalSignupsFlashed} = {emp.totalSignupsCombined} total</td>
                   <td>${emp.totalCommission?.toFixed(2) || '0'}</td>
-                  <td>{monthsEmployed}/12 months</td>
-                  <td>
-                    <span className={`status-badge ${emp.status}`}>
-                      {emp.status}
-                    </span>
-                  </td>
+                  <td>{monthsEmployed} months</td>
+                  <td><span className={`status-badge ${emp.status}`}>{emp.status}</span></td>
                   <td className="actions-cell">
-                    {emp.kycStatus === 'pending' && (
-                      <button className="approve-btn" onClick={() => approveKyc(emp.id)}>
-                        Approve KYC
-                      </button>
+                    {emp.status === 'pending' && (
+                      <button className="approve-btn" onClick={() => approveKyc(emp.id)}>Approve</button>
                     )}
-                    {eligible && emp.employmentType === 'contractor' && (
+                    {eligibleProducts.length > 0 && emp.employmentType !== 'permanent' && (
                       <button className="promote-btn" onClick={() => {
                         setSelectedEmployee(emp)
                         setShowPromoteModal(true)
-                      }}>
-                        Promote
-                      </button>
+                      }}>Promote</button>
                     )}
-                    <button className="delete-btn" onClick={() => deleteEmployee(emp.id)}>
-                      Delete
-                    </button>
+                    <button className="view-btn" onClick={() => viewCommissions(emp.id)}>Commissions</button>
+                    <button className="delete-btn" onClick={() => deleteEmployee(emp.id)}>Delete</button>
                   </td>
                 </tr>
               )
             })}
+            {filteredEmployees.length === 0 && (
+              <tr><td colSpan="8" className="no-data">No employees found</td></tr>
+            )}
           </tbody>
         </table>
       </div>
@@ -160,22 +188,19 @@ const EmployeesManagement = () => {
               <button className="modal-close" onClick={() => setShowPromoteModal(false)}>×</button>
             </div>
             <div className="modal-body">
-              <p>Promoting: <strong>{selectedEmployee.fullName}</strong></p>
+              <p>Employee: <strong>{selectedEmployee.fullName}</strong></p>
               <div className="form-group">
-                <label>Base Salary (monthly)</label>
-                <input
-                  type="number"
-                  value={promoteData.baseSalary}
-                  onChange={(e) => setPromoteData({ ...promoteData, baseSalary: parseFloat(e.target.value) })}
-                />
+                <label>Product</label>
+                <select value={selectedProduct} onChange={(e) => setSelectedProduct(e.target.value)}>
+                  <option value="">Select a product...</option>
+                  {products.map(p => (
+                    <option key={p.id} value={p.id}>{p.name}</option>
+                  ))}
+                </select>
               </div>
               <div className="form-group">
-                <label>Commission Rate (%)</label>
-                <input
-                  type="number"
-                  value={promoteData.commissionRate}
-                  onChange={(e) => setPromoteData({ ...promoteData, commissionRate: parseInt(e.target.value) })}
-                />
+                <label>Base Salary (monthly)</label>
+                <input type="number" value={promoteData.baseSalary} onChange={(e) => setPromoteData({ ...promoteData, baseSalary: parseFloat(e.target.value) })} />
               </div>
             </div>
             <div className="modal-footer">

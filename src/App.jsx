@@ -25,9 +25,8 @@ import SupportTickets from './pages/SupportTickets'
 import SystemSettings from './pages/SystemSettings'
 import AdminProfile from './pages/AdminProfile'
 
-// Job Management Pages (NEW)
-import JobsManagement from './pages/JobsManagement'
-import ApplicationsView from './pages/ApplicationsView'
+// Commission Management (NEW)
+import CommissionsManagement from './pages/CommissionsManagement'
 
 import './App.css'
 
@@ -63,9 +62,8 @@ function App() {
           <Route path="settings" element={<SystemSettings />} />
           <Route path="profile" element={<AdminProfile />} />
           
-          {/* Job Management Routes (NEW) */}
-          <Route path="jobs" element={<JobsManagement />} />
-          <Route path="applications" element={<ApplicationsView />} />
+          {/* Commission Management Route (NEW) */}
+          <Route path="commissions" element={<CommissionsManagement />} />
         </Route>
         
         <Route path="*" element={<Navigate to="/admin/login" />} />
